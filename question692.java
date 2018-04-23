@@ -13,6 +13,7 @@ public class question692 {
             count.put(word, count.getOrDefault(word, 0) + 1);
         }
         List<String> candidates = new ArrayList(count.keySet());
+        //按数值降序,按字母升序
         Collections.sort(candidates, (w1, w2) -> count.get(w1) != count.get(w2) ?
                 count.get(w2) - count.get(w1) : w1.compareTo(w2));
 
