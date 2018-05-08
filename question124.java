@@ -1,0 +1,23 @@
+/**
+ * @Author: LiJian
+ * @Description:
+ * @Date: Created in 14:42 2018/5/4
+ * @Modified By:
+ */
+public class question124 {
+    int maxValue;
+
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        maxPathDown(root);
+        return maxValue;
+    }
+
+    private int maxPathDown(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathDown(node.left));
+        int right = Math.max(0, maxPathDown(node.right));
+        maxValue = Math.max(maxValue, left + right + node.val);
+        return Math.max(left, right) + node.val;
+    }
+}
