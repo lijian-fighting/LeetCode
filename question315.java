@@ -10,28 +10,52 @@ import java.util.List;
  */
 public class question315 {
     public List<Integer> countSmaller(int[] nums) {
-        List<Integer> res = new ArrayList<>();
-        if(nums.length == 0){
-            return res;
+        if(nums.length == 0)
+            return new ArrayList<>();
+        int min = Integer.MAX_VALUE;
+        for(int value : nums)
+        {
+            if(value < min)
+                min = value;
         }
-        res.add(0);
-
-        for(int i = nums.length-2;i>=0;i--){
-            int temp = nums[i];
-            for(int j = i + 1;;j++){
-                if(j == nums.length || temp <= nums[j]){
-                    nums[j-1] = temp;
-                    res.add(j-i-1);
-                    break;
-                }else{
-                    nums[j-1] = nums[j];
-                }
-            }
+        for(int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] - min + 1;
         }
-        Collections.reverse(res);
-        return res;
+        int max = Integer.MIN_VALUE;
+        for(int value : nums) {
+            if(value > max)
+                max = value;
+        }
+        int[] BITree = new int[max + 1];
+        BITree[0] = 0;
+        int[] countArr = new int[nums.length];
+        for(int i = nums.length - 1; i >= 0; i--) {
+            int count = getSum(nums[i]-1, BITree);
+            countArr[i] = count;
+            update(nums[i], BITree);
+        }
+        List<Integer> result = new ArrayList<>();
+        for(int value : countArr) {
+            result.add(value);
+        }
+        return result;
     }
-
+    public int getSum(int value, int[] BITree) {
+        int sum = 0;
+        while(value > 0) {
+            sum += BITree[value];
+            //System.out.println("BITree[" + value + "] = " + BITree[value] + " sum  = " + sum);
+            value -= (value & -value);
+        }
+        return sum;
+    }
+    public void update(int value, int[] BITree) {
+        while(value <= BITree.length - 1) {
+            BITree[value] += 1;
+            //System.out.println("BITree[" + value + "] = " + BITree[value]);
+            value += (value & -value);
+        }
+    }
     public static void main(String[] args) {
         question315 q = new question315();
         int []A = {5,2,6,1};
