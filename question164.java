@@ -58,6 +58,11 @@ public class question164 {
             pre = bucketMax[i];
         }
         return maxGap;
+    }
 
+    public static void main(String[] args) {
+        question164 q =new question164();
+        int []A = {3,6,9,1};
+        System.out.println(q.maximumGap1(A));
     }
 }
