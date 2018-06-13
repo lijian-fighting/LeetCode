@@ -8,7 +8,7 @@ import java.util.Stack;
  * @Modified By:
  */
 public class question92 {
-    //内部交换
+    //内部交换,使用三个索引来标志当前，上一个和下一个节点
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode offList = new ListNode(0);
         offList.next = head;
@@ -28,7 +28,30 @@ public class question92 {
         t.next = curr;
         return offList.next;
     }
+    public ListNode reverseBetween1(ListNode head, int m, int n) {
+        if (head == null || head.next == null) {
+            return head;
+        }
 
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+        for (int i = 0; i < m - 1; i++) {
+            prev = prev.next;
+        }
+        ListNode start = prev.next;
+        ListNode then = start.next;
+
+        for (int i = 0; i < n - m; i++) {
+            start.next = then.next;
+            then.next = prev.next;
+            prev.next = then;
+            then = start.next;
+        }
+
+        return dummy.next;
+    }
     public static void main(String[] args) {
         ListNode test = new ListNode(1);
         test.next = new ListNode(2);
