@@ -37,8 +37,6 @@ public class question217 {
             else
                 bool[num - min] = true;
         }
-
         return false;
-
     }
 }
