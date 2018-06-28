@@ -10,6 +10,7 @@ import java.util.Queue;
  * @Modified By:
  */
 public class question668 {
+    //判断数量是否足够k个
     public boolean enough(int x, int m, int n, int k) {
         int count = 0;
         for (int i = 1; i <= m; i++) {
