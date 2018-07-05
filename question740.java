@@ -8,6 +8,7 @@ import java.util.Map;
  * @Modified By:
  */
 public class question740 {
+    //使用using来表示使用当前值的可能获得的最大值，avoid表示不使用所能获得的最大值，然后使用DP来动态更细你这两个变量。
     public int deleteAndEarn(int[] nums) {
         int[] count = new int[10001];
         for (int x: nums) count[x]++;
