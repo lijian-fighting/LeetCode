@@ -5,6 +5,7 @@
  * @Modified By:
  */
 public class question780 {
+    //从后往前，通过计算差来加快递归
     public boolean reachingPoints(int sx, int sy, int tx, int ty) {
         if (sx == tx && sy == ty) {
             return true;
