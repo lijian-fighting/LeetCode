@@ -22,6 +22,7 @@ public class question473 {
         }
         return dfs(nums,new int[4],0,sum /4);
     }
+    //排序之后再dfs跑的更快
     public boolean dfs(int []nums,int []res,int index, int target){
         if(index == nums.length){
             if(res[0] == target && res[1] == target && res[2] == target){
